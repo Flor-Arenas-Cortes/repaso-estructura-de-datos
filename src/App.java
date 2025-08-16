@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-    
+    /*
         // Array (Arreglo) - Estructura indexada de tamaño fijo
         // Ejercicio de calificaciones
 
@@ -23,5 +24,26 @@ public class App {
 
         //Mostrar el resultado
         System.out.println("El promedio es: " + promedio);
+    */
+
+        // ArrayList - Lista dinámica de nombres
+
+        //Creamos un ArrayList para almacenar nombres
+        ArrayList<String> nombres = new ArrayList<>();
+        Scanner leer = new Scanner(System.in);
+        String entrada;
+
+        System.out.println("Ingresa nombres (escribe 'salir' para terminar): ");
+        while (true){
+            entrada = leer.nextLine(); //Leemos entrada del usuario
+            if (entrada.equalsIgnoreCase("salir")) break; //Si escribe "Salir", termina
+            nombres.add(entrada); // Agregamos el nombre a la lista
+        }
+
+        //Mostramos los nombre ingresados
+        System.out.println("Nombres ingresados: ");
+        for (String nombre : nombres){
+            System.out.println("El nombre ingresado fue: " + nombre);
+        }
     }
 }
