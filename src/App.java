@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class App {
@@ -46,6 +47,7 @@ public class App {
             System.out.println("El nombre ingresado fue: " + nombre);
         }
     */
+    /*
         // Ejericio LinkendList - Lista enlzada simple de tareas
 
         //Creamos una LinkendList para las tareas
@@ -84,5 +86,54 @@ public class App {
                 break;
             } 
         } while (opcion != 4); // Repetir hasta que el usuario elija salir
+    */
+
+    //Lista doblemente enlazada - Historial de navegación
+
+    //Creamos una lista doblemente enlazada
+    LinkedList<String> historial = new LinkedList<>();
+
+    //Usamos un iterador para poder movernos adelante y atras
+    ListIterator<String> iterador = historial.listIterator();
+
+    Scanner escanear = new Scanner(System.in);
+    String comando;
+    String actual = null; //Página actual
+
+    System.out.println("Comandos: visitar[url], atras, adelante, salir");
+
+    while(true){
+        System.out.println("> ");
+        comando = escanear.nextLine();
+
+        if (comando.startsWith("visitar")){
+            //Extraemos la URL después del comando "visitar"
+            String url = comando.substring(8);
+            //Nos aseguramos de estar al final antes de agregar una nueva página
+            while (iterador.hasNext()) iterador.next();
+            iterador.add(url); //Agregamos la nueva página en nuestro historial
+            actual = url;
+            System.out.println("Visitando: " + actual);
+        } else if (comando.equals("atras")){
+            //Retroceder en el historial si es posible
+            if(iterador.hasPrevious()){
+                actual = iterador.previous();
+                System.out.println("Retrocedio a: " + actual);
+            } else {
+                System.out.println("No hay páginas anteriores");
+            }
+        } else if (comando.equals("adelante")){
+            //Avanzar en el historial si es posible
+            if (iterador.hasNext()){
+                actual= iterador.next();
+                System.out.println("Avanzando a: " + actual);
+            } else {
+                System.out.println("No hay páginas siguientes.");
+            }
+        } else if (comando.equals("salir")){
+            //Salir del programa
+            break;
+        }
+    }
     }
 }
